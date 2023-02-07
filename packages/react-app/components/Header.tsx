@@ -46,27 +46,18 @@ export default function Header() {
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <a
-                      href="#"
+                      href="/"
                       className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                     >
-                      Creators
+                      Home
                     </a>                    
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <a
-                      href="CreateAccount"
+                      href="Dashboard"
                       className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                     >
-                      Create Account
-                    </a>                    
-                  </div>
-
-                  <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a
-                      href="Support"
-                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
-                    >
-                      Send Support
+                      Dashboard
                     </a>                    
                   </div>
                 </div>
