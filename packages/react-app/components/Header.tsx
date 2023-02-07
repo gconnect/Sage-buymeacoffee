@@ -5,6 +5,7 @@ import {
   } from '@celo/react-celo';
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from 'next/link'
 
 export default function Header() {
 
@@ -45,12 +46,11 @@ export default function Header() {
                     <Image className="block h-8 w-auto lg:block" src="/logo.svg" width="24" height="24" alt="Celo Logo" />
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a
-                      href="/"
+                    <Link to="/"
                       className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                     >
                       Home
-                    </a>                    
+                    </Link>                    
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <a
