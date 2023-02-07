@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function support() {
+export default function Support() {
    const [amount, setAmount] = useState<string>("")
   const [comment, setComment] = useState<string>("")
   const [walletAddress, setWalletAddress] = useState<string>("")
