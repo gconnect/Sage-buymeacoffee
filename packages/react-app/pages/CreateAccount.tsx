@@ -41,8 +41,8 @@ export default function CreateAccount() {
       return
     } 
     
-    if( document.getElementById("formFile").files.length === 0 ){
-      setProfilePix("Please upload your profile photo")   
+    if(document.getElementById("formFile").files.length === 0 ){
+      alert("Please upload your profile photo")
       return
     } 
 
