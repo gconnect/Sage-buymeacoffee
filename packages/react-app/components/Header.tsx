@@ -46,11 +46,11 @@ export default function Header() {
                     <Image className="block h-8 w-auto lg:block" src="/logo.svg" width="24" height="24" alt="Celo Logo" />
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <Link to="/"
+                    <a href="/"
                       className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                     >
                       Home
-                    </Link>                    
+                    </a>                    
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <a
