@@ -40,12 +40,12 @@ export default function CreateAccount() {
       alert("Space not allowed here")
       return
     } 
-    
-    if(document.getElementById("formFile").files.length === 0 ){
+
+    if (!profilePix) {
       alert("Please upload your profile photo")
       return
-    } 
-
+    }
+    
     const pinataHash = await pinFileToPinata(profilePix)
     // await createCreator(account, removeSpace(username), pinataHash, bio)  
   }
