@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { pinFileToPinata } from '@/pinata/pinProfilePix'
 
 export default function CreateAccount() {
-  const [username, setUsername] = useState("")
-  const [userBio, setUserBio] = useState("")
+  const [username, setUsername] = useState<string>("")
+  const [userBio, setUserBio] = useState<string>("")
   const [profilePix, setProfilePix] = useState<string | File | number | readonly string[] | undefined>(undefined)
 
   const handleUsername = (e: React.FormEvent<HTMLInputElement>) => {
@@ -12,13 +12,12 @@ export default function CreateAccount() {
 
   }
 
-  const handleUserBio = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleUserBio = (e: React.FormEvent<HTMLTextAreaElement>) => {
     setUserBio(e.currentTarget.value)
-          console.log(e.target.value)
 
   }
 
-   const handleprofilePix = (e: React.ChangeEvent<HTMLInputElement>) => {
+   const handleprofilePix = (e: React.FormEventChangeEvent<HTMLInputElement>) => {
      if (e.target.files != null) {
       setProfilePix(e.target.files[0]); 
       console.log(e.target.files[0])
@@ -45,7 +44,7 @@ export default function CreateAccount() {
       alert("Please upload your profile photo")
       return
     }
-    
+
     const pinataHash = await pinFileToPinata(profilePix)
     // await createCreator(account, removeSpace(username), pinataHash, bio)  
   }
