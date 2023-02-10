@@ -5,7 +5,7 @@ import { getCreators } from '@/interact'
 import { useCelo } from '@celo/react-celo';
 
 export default function Home() {
-  const [creators, setCreators] = useState([])
+  const [creators, setCreators] = useState<any[]>([])
   const { kit } = useCelo()
   
   useEffect(() => {
