@@ -28,6 +28,11 @@ export default function CreateAccount() {
    }
   
   const createAccount = async () => {
+    if (!address) {
+      alert("Please connect your wallet")
+      return
+    }
+    
     if (username === "") {
       alert("Username required!")
       return

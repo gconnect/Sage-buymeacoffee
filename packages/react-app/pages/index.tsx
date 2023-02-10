@@ -22,7 +22,7 @@ export default function Home() {
         <button className="bg-yellow-300 rounded-md p-4 mt-4" onClick={() => window.open("CreateAccount")}> Create Creator Account</button>
       </div>
       <div className="flex justify-around">
-        {creators.map((item) => <div className="w-3/4 mt-2 mx-2 border-2 border-yellow-300 p-4 rounded-md">
+        {creators.map((item, index) => <div key={index} className="w-3/4 mt-2 mx-2 border-2 border-yellow-300 p-4 rounded-md">
         <Image src={`https://ipfs.io/ipfs/${item.ipfsHash}`} alt="profile-pix" width={300} height={200} />
         <p>{item.username}</p>
         <p>{item.userbio}</p>
