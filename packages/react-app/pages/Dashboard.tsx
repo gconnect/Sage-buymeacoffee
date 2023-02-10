@@ -1,12 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
-import profilePix from "../images/img3.png"
 
 export default function Dashboard() {
   return (
     <div>
       <div className="w-full mt-2 mx-2 border-2 border-yellow-300 p-4 rounded-md">
-        <Image src={profilePix} alt="profile-pix" width={200} height={200} />
+        <Image src="/images/img3.png" alt="profile-pix" width={200} height={200} />
         <p>Username</p>
         <p>Brief bio</p>
         <label>Donation received:</label>
