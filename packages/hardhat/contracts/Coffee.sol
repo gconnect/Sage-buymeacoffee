@@ -97,7 +97,7 @@ contract Coffee {
     }
 
      // function to get creator info
-    function getCreatorInfo(uint index) public view returns (uint id, string memory,  string memory, address, string memory, uint, string memory, uint){
+    function getCreatorInfo(uint index) public view returns (uint id, string memory,  string memory, address, string memory, uint, uint){
         CreatorInfo storage creatorDetail  = creatorList[index];
         return (
         creatorDetail.id,   
@@ -106,7 +106,6 @@ contract Coffee {
         creatorDetail.walletAddress, 
         creatorDetail.userbio, 
         creatorDetail.donationsReceived, 
-        creatorDetail.networkOption,
         creatorDetail.supporters);
     }
 
@@ -120,20 +119,6 @@ contract Coffee {
         
         // Must accept more than 0 ETH for a coffee.
         require(msg.value > 0, "Insufficient balance!");
-
-        // Add the support to storage!
-        supporters.push(Supporter(
-            msg.sender,
-            block.timestamp,
-            _message
-        ));
-
-        // Emit a Supporter event with details about the support.
-        emit SupporterEvent(
-            msg.sender,
-            block.timestamp,
-            _message
-        );
     }
 
     // function to get creator balance

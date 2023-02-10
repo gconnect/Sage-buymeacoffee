@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { pinFileToPinata } from '@/pinata/pinProfilePix'
+import { useCelo } from '@celo/react-celo';
+import { createCreator } from '@/interact';
 
 export default function CreateAccount() {
   const [username, setUsername] = useState<string>("")
   const [userBio, setUserBio] = useState<string>("")
-  // const [profilePix, setProfilePix] = useState<string | File | number | readonly string[] | undefined>(undefined)
-
+  const [profilePix, setProfilePix] = useState<string | File | number | readonly string[] | undefined>(undefined)
+  const { address, kit } = useCelo()
+  
   const handleUsername = (e: React.FormEvent<HTMLInputElement>) => {
     setUsername(e.currentTarget.value)
       console.log(e.currentTarget.value)
@@ -17,12 +20,12 @@ export default function CreateAccount() {
 
   }
 
-  //  const handleprofilePix = (e: React.FormEventChangeEvent<HTMLInputElement>) => {
-  //    if (e.target.files != null) {
-  //     setProfilePix(e.target.files[0]); 
-  //     console.log(e.target.files[0])
-  //   } 
-  //  }
+   const handleprofilePix = (e: React.ChangeEvent<HTMLInputElement>) => {
+     if (e.target.files != null) {
+      setProfilePix(e.target.files[0]); 
+      console.log(e.target.files[0])
+    } 
+   }
   
   const createAccount = async () => {
     if (username === "") {
@@ -40,13 +43,13 @@ export default function CreateAccount() {
       return
     } 
 
-    // if (!profilePix) {
-    //   alert("Please upload your profile photo")
-    //   return
-    // }
+    if (!profilePix) {
+      alert("Please upload your profile photo")
+      return
+    }
 
-    // const pinataHash = await pinFileToPinata(profilePix)
-    // await createCreator(account, removeSpace(username), pinataHash, bio)  
+    const pinataHash = await pinFileToPinata(profilePix)
+    await createCreator(address, username, pinataHash, userBio, kit)  
   }
 
   return (
@@ -59,9 +62,9 @@ export default function CreateAccount() {
         <textarea className='w-full border-2 rounded-md p-2' placeholder='Brief bio' value={userBio} onChange={handleUserBio} />
       </div>
       <label>Upload your profile pix</label>
-      {/* <div>
+      <div>
         <input className='w-full' type="file" id="formFile" onChange={handleprofilePix} />
-      </div> */}
+      </div>
       <button className=' w-full bg-yellow-300 mt-4 p-4 rounded-md' onClick={createAccount}>Create Account</button>
     </div>
   )
