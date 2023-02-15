@@ -17,9 +17,12 @@ async function main() {
   const Coffee = await hre.ethers.getContractFactory("Coffee");
   const coffee = await Coffee.deploy();
 
-  await coffee.deployed();
+  // await coffee.deployed();
 
-  console.log("Coffee deployed to:", coffee.address);
+  // console.log("Coffee deployed to:", coffee.address);
+
+  const contractAddress = await (await coffee.deployed()).address;
+  console.log(`Contract was deployed to ${contractAddress}`)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

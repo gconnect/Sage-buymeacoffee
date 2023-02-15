@@ -6,13 +6,26 @@ import {
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from 'next/link'
+import { getCreators } from "@/interact";
+
+interface ICreator {
+  donationsReceived: string;
+  id: number;
+  ipfsHash: string; 
+  supporters: number; 
+  userbio: string;
+  username: string;
+  walletAddress: string
+}
 
 export default function Header() {
+  const [data, setData] = useState<any>({})
 
     let [componentInitialized, setComponentInitialized] = useState(false);
     let {
         initialised,
         address,
+        kit,
         connect,
         disconnect
     } = useCelo();
@@ -21,9 +34,13 @@ export default function Header() {
       if (initialised) {
         setComponentInitialized(true);
       }
+      const creatorData = async () => {
+        const creators = await getCreators(kit)
+        return setData(creators.find((item: any) => item.walletAddress === address))
+    }
+    creatorData()
     }, [initialised]);
-
-
+    console.log(address)
     return (
       <Disclosure as="nav" className="bg-prosperity border-b border-black">
         {({ open }) => (
@@ -52,7 +69,8 @@ export default function Header() {
                       Home
                     </Link>                    
                   </div>
-                  <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                  {data === undefined ? null : 
+                    <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <a
                       href="Dashboard"
                       className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
@@ -60,6 +78,8 @@ export default function Header() {
                       Dashboard
                     </a>                    
                   </div>
+                  }
+                  
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   {componentInitialized && address ? (

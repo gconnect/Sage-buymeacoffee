@@ -32,7 +32,7 @@ export default function CreateAccount() {
       alert("Please connect your wallet")
       return
     }
-    
+
     if (username === "") {
       alert("Username required!")
       return
