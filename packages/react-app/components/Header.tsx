@@ -40,7 +40,7 @@ export default function Header() {
     }
     creatorData()
     }, [initialised, kit]);
-  
+    console.log("data", data)
     console.log(address)
     return (
       <Disclosure as="nav" className="bg-prosperity border-b border-black">
@@ -70,12 +70,12 @@ export default function Header() {
                       Home
                     </Link>                    
                   </div>
-                  { !address && !data ? null : 
+                  { data === undefined ? null : 
                     <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <Link className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                           href={{
                             pathname: `/Dashboard/`,
-                            // query: { username: !address ? null : data.username}// the data
+                            query: { username: data === undefined ? null : data.username}// the data
                           }}
                       >
                       Dashboard                 
