@@ -36,13 +36,12 @@ export default function Header() {
       }
       const creatorData = async () => {
         const creators = await getCreators(kit)
-        return setData(creators.find((item: any) => item.walletAddress === address))
+        return setData(!address ? null : creators.find((item: any) => item.walletAddress === address))
     }
     creatorData()
     }, [initialised, kit]);
   
-  // console.log(address)
-  
+    console.log(address)
     return (
       <Disclosure as="nav" className="bg-prosperity border-b border-black">
         {({ open }) => (
@@ -71,12 +70,12 @@ export default function Header() {
                       Home
                     </Link>                    
                   </div>
-                  {data === undefined ? null : 
+                  { !address && !data ? null : 
                     <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <Link className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                           href={{
                             pathname: `/Dashboard/`,
-                            query: { username: data.username }// the data
+                            // query: { username: !address ? null : data.username}// the data
                           }}
                       >
                       Dashboard                 

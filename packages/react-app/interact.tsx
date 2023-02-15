@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import contractABI from "./Coffee.json"
 import Router from "next/router";
 
-const contractAddress = "0x096E0DA77C7b62686cAe04a4D4991669D86F37f6";
+const contractAddress = "0x098C16fc23a23dBba881A7d6bF4Fead29A60362b";
 
 export function donationContract(kit: any) {
   return new kit.connection.web3.eth.Contract(contractABI.abi, contractAddress)

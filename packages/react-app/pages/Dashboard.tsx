@@ -30,10 +30,10 @@ export default function Dashboard() {
     }
     creatorData()
   }, [address, kit])
-  console.log(data)
+  console.log("creator id", data.id)
   return (
     <div>
-      {
+      { !address ?  <div>Please connect your wallet</div> : 
         <div className="w-full mt-2 mx-2 border-2 border-yellow-300 p-4 rounded-md">
         <Image src={`https://ipfs.io/ipfs/${data.ipfsHash}`}  alt="profile-pix" width={200} height={200} />
         <p>{data.username}</p>

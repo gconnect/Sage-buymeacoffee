@@ -22,6 +22,7 @@ export default function Withdraw() {
 
   }
   
+  console.log("id is", props.id)
   const withdrawTip = async () => {
     if (amount === "") {
       alert("amount required!")

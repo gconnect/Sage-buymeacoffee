@@ -7,7 +7,7 @@ import Router from 'next/router';
 
 export default function Home() {
   const [creators, setCreators] = useState<any[]>([])
-  const { kit } = useCelo()
+  const { kit, address } = useCelo()
 
   useEffect(() => {
     const allCreators = async () => {
@@ -22,9 +22,11 @@ export default function Home() {
       <div>
         <h1>Are you a creator? click the button below to create account!</h1>
         <button className="bg-yellow-300 rounded-md p-4 mt-4" onClick={() => window.open("CreateAccount")}> Create Creator Account</button>
-      </div> 
+      </div>
+
         <div className="flex justify-around">
-        {creators.map((item, index) => <div key={index} className="w-3/4 mt-2 mx-2 border-2 border-yellow-300 p-4 rounded-md">
+        {!address ? <div className='text-center mt-2'>Please connect your wallet to view listed creators </div>
+          : creators.map((item, index) => <div key={index} className="w-3/4 mt-2 mx-2 border-2 border-yellow-300 p-4 rounded-md">
         <Image src={`https://ipfs.io/ipfs/${item.ipfsHash}`} alt="profile-pix" width={300} height={200} />
         <p>{item.username}</p>
         <p>{item.userbio}</p>
@@ -34,7 +36,7 @@ export default function Home() {
           <Link
             href={{
               pathname: `/Support/`,
-              query: { id: item.id -1, walletAddress: item.walletAddress }// the data
+              query: { id: item.id, walletAddress: item.walletAddress }// the data
             }}
           >
             <button className="w-full bg-yellow-300 rounded-md p-2 my-2">{` Support ${item.walletAddress.substring(0,7)}...`}</button>

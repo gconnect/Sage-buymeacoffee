@@ -63,7 +63,7 @@ contract Coffee {
         require(isUsernameExist[_username] == false, "Username already exist");
 
          /* Increment the counter */
-        _creatorIds.increment();
+        // _creatorIds.increment();
 
         creatorList.push(CreatorInfo(_creatorIds.current(),_username, _ipfsHash, payable(msg.sender), _userbio, _donationsReceived, _supporters));
         isAddressExist[msg.sender] = true;
@@ -79,6 +79,7 @@ contract Coffee {
        _donationsReceived,
        _supporters
     );
+        _creatorIds.increment();
     }
 
     // function to get all creators
