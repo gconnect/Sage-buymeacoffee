@@ -39,8 +39,10 @@ export default function Header() {
         return setData(creators.find((item: any) => item.walletAddress === address))
     }
     creatorData()
-    }, [initialised]);
-    console.log(address)
+    }, [initialised, kit]);
+  
+  // console.log(address)
+  
     return (
       <Disclosure as="nav" className="bg-prosperity border-b border-black">
         {({ open }) => (
@@ -71,12 +73,15 @@ export default function Header() {
                   </div>
                   {data === undefined ? null : 
                     <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a
-                      href="Dashboard"
-                      className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
-                    >
-                      Dashboard
-                    </a>                    
+                        <Link className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
+                          href={{
+                            pathname: `/Dashboard/`,
+                            query: { username: data.username }// the data
+                          }}
+                      >
+                      Dashboard                 
+                        </Link>
+                                   
                   </div>
                   }
                   

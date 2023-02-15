@@ -47,7 +47,7 @@ export default function Support() {
         <textarea className='w-full border-2 rounded-md p-2' placeholder='Say something nice' value={comment} onChange={handleComment} />
       </div>
       <div>
-        <input className='w-full border-2 rounded-md p-2' type="text" placeholder='wallet Address' disabled value={props.walletAddress === undefined ? "" : `${props.walletAddress.substring(0,17)}...`} />
+        <input className='w-full border-2 rounded-md p-2' type="text" placeholder='wallet Address' disabled value={props.walletAddress} />
       </div>
       <button className=' w-full bg-yellow-300 mt-4 p-4 rounded-md' onClick={sendSupport}>Send Support</button>
     </div>

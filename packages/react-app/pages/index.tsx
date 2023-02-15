@@ -15,7 +15,7 @@ export default function Home() {
         setCreators(creatorList)
     }
     allCreators()
-  }, [])
+  }, [kit])
 
   return (
     <div>
