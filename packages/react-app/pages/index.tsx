@@ -11,8 +11,13 @@ export default function Home() {
 
   useEffect(() => {
     const allCreators = async () => {
-      const creatorList = await getCreators(kit)
+      try {
+        const creatorList = await getCreators(kit)
         setCreators(creatorList)
+      } catch (e) {
+        console.log(e)
+      }
+   
     }
     allCreators()
   }, [kit])
@@ -26,7 +31,7 @@ export default function Home() {
 
         <div className="flex justify-around">
         {!address ? <div className='text-center mt-2'>Please connect your wallet to view listed creators </div>
-          : creators.map((item, index) => <div key={index} className="w-3/4 mt-2 mx-2 border-2 border-yellow-300 p-4 rounded-md">
+          : creators && creators.map((item, index) => <div key={index} className="w-3/4 mt-2 mx-2 border-2 border-yellow-300 p-4 rounded-md">
         <Image src={`https://ipfs.io/ipfs/${item.ipfsHash}`} alt="profile-pix" width={300} height={200} />
         <p>{item.username}</p>
         <p>{item.userbio}</p>
