@@ -37,7 +37,7 @@ export default function Withdraw() {
         <input className='w-full border-2 rounded-md mb-2 p-2' type="number" placeholder='amount' value={amount} onChange={handleAmount} />
       </div>
       <div>
-        <input className='w-full border-2 rounded-md p-2' type="text" placeholder='wallet Address' disabled value={props.walletAddress} onChange={handleWalletAddress} />
+        <input className='w-full border-2 rounded-md p-2' type="text" placeholder='wallet Address' disabled value={props.walletAddress} />
       </div>
       <button className=' w-full bg-yellow-300 mt-4 p-4 rounded-md' onClick={withdrawTip}>Withdraw Tip</button>
     </div>
