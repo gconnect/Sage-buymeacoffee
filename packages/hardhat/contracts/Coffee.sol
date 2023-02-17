@@ -31,6 +31,13 @@ contract Coffee {
        uint supporters
     );
 
+    // Event to emit when a SupporterEvent is created.
+    event SupporterEvent(
+        address indexed from,
+        uint256 timestamp,
+        string message
+    );
+
     // payable address can receive ether
     address payable public owner;
 
@@ -82,36 +89,13 @@ contract Coffee {
         _creatorIds.increment();
     }
 
-    // function to get all creators
-    function getCreatorCount() public view returns (uint){
-        return creatorList.length;
-    }
-
       // Return the entire list of creators
     function getCreatorList() public view returns (CreatorInfo[] memory) {
         return creatorList;
     }
 
-   // Get a single creator by id
-    function getCreatorObj(uint _index) public view returns (CreatorInfo memory) {
-         return creatorList[_index];
-    }
-
-     // function to get creator info
-    function getCreatorInfo(uint index) public view returns (uint id, string memory,  string memory, address, string memory, uint, uint){
-        CreatorInfo storage creatorDetail  = creatorList[index];
-        return (
-        creatorDetail.id,   
-        creatorDetail.username, 
-        creatorDetail.ipfsHash, 
-        creatorDetail.walletAddress, 
-        creatorDetail.userbio, 
-        creatorDetail.donationsReceived, 
-        creatorDetail.supporters);
-    }
-
     /**
-     * @dev send tip to a creator (sends an ETH tip and leaves a memo)
+     * @dev send tip to a creator (sends an CELO tip)
      * @param _message a nice message from the supporter
      */
     function sendTip(string memory _message, uint _index) public payable {
@@ -120,13 +104,13 @@ contract Coffee {
         
         // Must accept more than 0 ETH for a coffee.
         require(msg.value > 0, "Insufficient balance!");
-    }
 
-    // function to get creator balance
-    function getCreatorBal (uint index) public view returns (uint){
-        CreatorInfo storage creatorDetail = creatorList[index];
-        uint creatorBal = creatorDetail.donationsReceived;
-        return creatorBal;
+        // Emit a Supporter event with details about the support.
+        emit SupporterEvent(
+            msg.sender,
+            block.timestamp,
+            _message
+        );
     }
 
     // Creator withdraw function. This function can be called by the creator
@@ -146,19 +130,5 @@ contract Coffee {
         (bool success, ) = creatorAddress.call{value: amount}("");
         require(success, "Failed to send Ether");  
         return creatorAddress;
-    }
-
-    //  function to withdraw all ether from the contract
-    function contractOwnerWithdraw() public {
-        uint amount = address(this).balance;
-        
-        // send all ether to owner
-        (bool success, ) = owner.call{value : amount}("");
-        require(success, "Failed to send ether");
-    }
-
-    // function to get contract balance
-    function contractBal() public view returns(uint){
-       return address(this).balance;
     }
 }
