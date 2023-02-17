@@ -3,22 +3,11 @@ import Image from 'next/image'
 import { getCreators } from '@/interact'
 import { useCelo } from '@celo/react-celo'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 export default function Dashboard() {
    const [data, setData] = useState<any>({})
    const { address, kit } = useCelo()
-  const router = useRouter()
-  
-  const {
-    query: {
-      id, walletAddress, username, ipfsHash, userBio, donationsReceived,supporters
-    } 
-  } = router
-  
-  const props = {
-      id, walletAddress, username, ipfsHash, userBio, donationsReceived,supporters
-  }
+ 
   useEffect(() => {
     const creatorData = async () => {
       const creators = await getCreators(kit)
